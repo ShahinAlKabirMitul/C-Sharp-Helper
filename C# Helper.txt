@@ -47,3 +47,44 @@ private static T GetItem<T>(DataRow dr)
             }
             return obj;
     }  
+    
+    //Email Helper
+    
+     public static void EmailSender(string subject, string message, string sender)
+       {
+           string SmtpClientUrl = "smtp.gmail.com";
+           int SmtpClientPort = 587;
+           //string EmailUser = "mediasoftcrm@gmail.com";
+           //string EmailPass = "01917653491";
+           string EmailUser = ConfigurationManager.AppSettings["SenderEmail"];
+           string EmailPass = ConfigurationManager.AppSettings["SenderPassword"];
+
+
+           using (MailMessage mailMessage = new MailMessage())
+           {
+               using (SmtpClient smtpClient = new SmtpClient(SmtpClientUrl, SmtpClientPort))
+               {
+                   smtpClient.EnableSsl = true;
+                   mailMessage.To.Add(sender);
+                   mailMessage.From = new MailAddress(EmailUser);
+                   mailMessage.Subject = subject;
+
+                   mailMessage.Body = message;
+                   mailMessage.IsBodyHtml = true;
+                   smtpClient.Credentials = new System.Net.NetworkCredential(EmailUser, EmailPass);
+
+                   //if (!string.IsNullOrEmpty(attachFileName))
+                   //    mailMessage.Attachments.Add(new Attachment(attachFileName));
+
+                   try
+                   {
+                       smtpClient.Send(mailMessage);
+                   }
+                   catch (Exception ex)
+                   {
+                       throw new Exception(ex.Message, ex.InnerException);
+                   }
+               }
+           }
+       }
+       
