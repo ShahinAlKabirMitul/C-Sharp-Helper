@@ -1,0 +1,9 @@
+ public string CurrentVersion
+        {
+            get
+            {
+                return ApplicationDeployment.IsNetworkDeployed
+                       ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
+                       : Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+        } 
