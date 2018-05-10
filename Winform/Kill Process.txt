@@ -1,0 +1,6 @@
+ Process[] myProcess = Process.GetProcessesByName("Print Service");
+            if (myProcess.Length > 1)
+            {
+                MessageBox.Show(@"Already Running", @"Information", MessageBoxButtons.OK);
+                return;
+            }
