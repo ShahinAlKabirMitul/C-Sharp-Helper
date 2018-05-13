@@ -1,0 +1,27 @@
+  <configSections>
+
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <sectionGroup name="businessObjects">
+      <sectionGroup name="crystalReports">
+        <section name="rptBuildProvider" type="CrystalDecisions.Shared.RptBuildProviderHandler, CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, Custom=null"/>
+        <section name="crystalReportViewer" type="System.Configuration.NameValueSectionHandler"/>
+      </sectionGroup>
+    </sectionGroup>
+  </configSections>
+  <businessObjects>
+    <crystalReports>
+      <rptBuildProvider>
+        <add embedRptInResource="true"/>
+      </rptBuildProvider>
+      <crystalReportViewer>
+        <add key="ResourceUri" value="/crystalreportviewers13"/>
+      </crystalReportViewer>
+    </crystalReports>
+  </businessObjects>
+	<appSettings>
+		<add key="CrystalImageCleaner-AutoStart" value="true"/>
+		<add key="CrystalImageCleaner-Sleep" value="60000"/>
+		<add key="CrystalImageCleaner-Age" value="120000"/>
+    <add key="aspnet:MaxHttpCollectionKeys" value="20000" />
+    <add key="ReportServerUrl" value="http://192.168.1.21/bakeryreport/" />
+	</appSettings>
